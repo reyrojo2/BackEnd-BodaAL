@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from utils import generar_token, validar_token
 from datetime import datetime
 import gspread
+import pytz
 import json
 import os
 from dotenv import load_dotenv
@@ -40,8 +41,8 @@ def asistencia():
     data = request.json
     if not validar_token(data.get("timestamp"), data.get("token")):
         return jsonify({"error": True, "desc": "Token inválido o expirado"}), 403
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    peru_tz = pytz.timezone("America/Lima")
+    timestamp = datetime.now(peru_tz).strftime("%d-%m-%Y %H:%M:%S")
     sheet.append_row(
         [
             timestamp,
