@@ -1,0 +1,10 @@
+# Entorno virtual
+venv/
+__pycache__/
+
+# Variables de entorno y claves
+.env
+
+# Archivos del sistema
+.DS_Store
+*.pyc
