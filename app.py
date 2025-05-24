@@ -1,3 +1,4 @@
+from flask_cors import CORS
 from flask import Flask, request, jsonify
 from utils import generar_token, validar_token
 from datetime import datetime
@@ -8,6 +9,7 @@ from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
+CORS(app)
 load_dotenv()
 # Google Sheets setup
 scope = [
